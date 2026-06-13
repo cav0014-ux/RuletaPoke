@@ -168,11 +168,6 @@ function dibujarRuleta() {
     });
 }
 
-ctx.restore();
-
-
-
-
 function guardarEnFirebase() {
     db.collection("ruletas")
       .doc(userId)
