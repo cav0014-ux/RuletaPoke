@@ -699,11 +699,38 @@ document.getElementById("borrarHistorial")
     renderHistorial();
 });
 
+let volumenAnterior = 1;
+let muteado = false;
+
+document.getElementById("iconoVolumen").addEventListener("click", () => {
+    if (!muteado) {
+        volumenAnterior = parseFloat(document.getElementById("volumen").value);
+        spinSound.volume = 0;
+        winSound.volume = 0;
+        document.getElementById("volumen").value = 0;
+        document.getElementById("iconoVolumen").textContent = "🔇";
+        muteado = true;
+    } else {
+        spinSound.volume = volumenAnterior;
+        winSound.volume = volumenAnterior;
+        document.getElementById("volumen").value = volumenAnterior;
+        document.getElementById("iconoVolumen").textContent = "🔊";
+        muteado = false;
+    }
+});
+
 document.getElementById("volumen").addEventListener("input", (e) => {
     const vol = parseFloat(e.target.value);
     console.log("Volumen:", vol);
     spinSound.volume = vol;
     winSound.volume = vol;
+    if (vol === 0) {
+        document.getElementById("iconoVolumen").textContent = "🔇";
+        muteado = true;
+    } else {
+        document.getElementById("iconoVolumen").textContent = "🔊";
+        muteado = false;
+    }
 });
 
 cargarHistorialFirebase();
