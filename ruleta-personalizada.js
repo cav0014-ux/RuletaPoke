@@ -540,45 +540,27 @@ fileInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ruleta1");
 
-    reader.onload = function(event) {
+    fetch("https://api.cloudinary.com/v1_1/dr8i88vt5/image/upload", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        const imgURL = data.secure_url;
 
-        const img = new Image();
-        img.onload = function() {
+        if (participanteSeleccionado !== null) {
+            participantes[participanteSeleccionado].imagen = imgURL;
+        }
 
-            const canvas = document.createElement("canvas");
-            const MAX = 100;
-            let w = img.width;
-            let h = img.height;
-
-            if (w > h) {
-                h = Math.round(h * MAX / w);
-                w = MAX;
-            } else {
-                w = Math.round(w * MAX / h);
-                h = MAX;
-            }
-
-            canvas.width = w;
-            canvas.height = h;
-            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-
-            const imgURL = canvas.toDataURL("image/jpeg", 0.5);
-
-            if (participanteSeleccionado !== null) {
-                participantes[participanteSeleccionado].imagen = imgURL;
-            }
-
-            renderLista();
-            dibujarRuleta();
-            guardarParticipantes();
-        };
-
-        img.src = event.target.result;
-    };
-
-    reader.readAsDataURL(file);
+        renderLista();
+        dibujarRuleta();
+        guardarParticipantes();
+    })
+    .catch(err => console.error("Error subiendo imagen:", err));
 });
 
 const importFile =
