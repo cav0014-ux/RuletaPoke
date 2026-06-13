@@ -137,11 +137,17 @@ function dibujarRuleta() {
             const inicio = i * angulo;
             const fin = inicio + angulo;
 
-            ctx.beginPath();
-            ctx.moveTo(300, 300);
-            ctx.arc(300, 300, 280, inicio, fin);
-            ctx.fillStyle = colores[i % colores.length];
-            ctx.fill();
+            const imgCentro = new Image();
+            imgCentro.onload = () => {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(300, 300, 60, 0, Math.PI * 2);
+                ctx.clip();
+                ctx.drawImage(imgCentro, 240, 240, 120, 120);
+                ctx.restore();
+            };
+
+            imgCentro.src = "Assets/pokeball_centro.png"
 
             ctx.save();
             ctx.translate(300, 300);
