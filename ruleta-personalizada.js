@@ -259,6 +259,7 @@ document.getElementById("girar").addEventListener("click", () => {
             mostrarPopupGanador(
              participantes[indice]
             );
+             agregarAlHistorial(participantes[indice]);
              spinSound.pause();
 
             winSound.currentTime = 0;
@@ -536,28 +537,22 @@ function eliminarSeleccionados() {
 const fileInput = document.getElementById("fileInput");
 
 fileInput.addEventListener("change", (e) => {
-
     const file = e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
+    const storageRef = firebase.storage().ref();
+    const imagenRef = storageRef.child(
+        "imagenes/" + participantes[participanteSeleccionado].nombre + "_" + Date.now()
+    );
 
-    reader.onload = function(event) {
-
-        const imgURL = event.target.result;
-
-       if (participanteSeleccionado !== null){
-        participantes[participanteSeleccionado].imagen =
-        imgURL;
-       }
-
-        renderLista();
-        dibujarRuleta();
-        guardarParticipantes();
-        
-    };
-
-    reader.readAsDataURL(file);
+    imagenRef.put(file).then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((url) => {
+            participantes[participanteSeleccionado].imagen = url;
+            renderLista();
+            dibujarRuleta();
+            guardarParticipantes();
+        });
+    });
 });
 
 const importFile =
@@ -639,5 +634,59 @@ function compartirConLink() {
 function guardarParticipantes() {
     guardarEnFirebase();
 }
+
+let historial = [];
+
+function agregarAlHistorial(participante) {
+    historial.push({
+        nombre: participante.nombre,
+        imagen: participante.imagen || null
+    });
+    guardarHistorialFirebase();
+    renderHistorial();
+}
+
+function renderHistorial() {
+    const lista = document.getElementById("listaHistorial");
+    lista.innerHTML = "";
+    historial.slice().reverse().forEach(item => {
+        const div = document.createElement("div");
+        div.className = "historial-item";
+        if (item.imagen) {
+            div.innerHTML = `<img src="${item.imagen}"><span>${item.nombre}</span>`;
+        } else {
+            div.innerHTML = `<div class="sin-imagen">👤</div><span>${item.nombre}</span>`;
+        }
+        lista.appendChild(div);
+    });
+}
+
+function guardarHistorialFirebase() {
+    db.collection("ruletas")
+      .doc("ruletaPokemon1")
+      .set({ historial: historial }, {merge : true});
+}
+
+function cargarHistorialFirebase() {
+    db.collection("ruletas")
+      .doc("ruletaPokemon1")
+      .get()
+      .then(doc => {
+          if (doc.exists && doc.data().historial) {
+              historial = doc.data().historial;
+              renderHistorial();
+          }
+      });
+}
+
+document.getElementById("borrarHistorial")
+.addEventListener("click", () => {
+    if (!confirm("¿Borrar el historial?")) return;
+    historial = [];
+    guardarHistorialFirebase();
+    renderHistorial();
+});
+
+cargarHistorialFirebase();
 
 });
