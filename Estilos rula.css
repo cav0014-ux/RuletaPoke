@@ -302,3 +302,12 @@ body {
     width: 100%;
     cursor: pointer;
 }
+
+.historial-item {
+    cursor: pointer;
+}
+
+.historial-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+}
