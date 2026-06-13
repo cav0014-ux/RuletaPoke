@@ -701,6 +701,7 @@ document.getElementById("borrarHistorial")
 
 document.getElementById("volumen").addEventListener("input", (e) => {
     const vol = parseFloat(e.target.value);
+    console.log("Volumen:", vol);
     spinSound.volume = vol;
     winSound.volume = vol;
 });
