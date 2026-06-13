@@ -1,0 +1,229 @@
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* =======================
+   RUEDA
+======================= */
+
+.contenedor {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+}
+
+#ruleta {
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    display: block;
+}
+
+/* Flecha */
+.flecha {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-right: 50px solid red;
+    z-index: 1000;
+}
+
+/* Botón girar */
+#girar {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    color: #111;
+    transition: 0.2s;
+    align-self: center;
+}
+
+#girar:hover {
+    transform: scale(1.05);
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* =======================
+   MENÚ OPCIONES
+======================= */
+
+.menu-opciones {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+/* Botón opciones */
+#btnOpciones {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #fff;
+    color: #111;
+    transition: 0.2s;
+}
+
+#btnOpciones:hover {
+    transform: scale(1.05);
+}
+
+/* Panel opciones */
+.panel-opciones {
+    margin-top: 10px;
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 220px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.panel-opciones button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.panel-opciones button:last-child {
+    margin-bottom: 0;
+}
+
+/* =======================
+   PANEL AGREGAR CAMPOS
+======================= */
+
+#panelAgregar {
+    margin-top: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#panelAgregar.activo {
+    display: flex;
+}
+
+#panelAgregar textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
+#confirmarAgregar {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =======================
+   UTILIDADES
+======================= */
+
+.oculto {
+    display: none;
+}
+
+.participante-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px;
+    background: #2a2a2a;
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
+
+#listaParticipantes {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.popup{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.popup-contenido{
+    background: white;
+    color: black;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    min-width: 300px;
+}
+
+.popup-contenido img{
+    width: 200px;
+    height: 200px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    margin: 15px auto;
+
+    display: none;
+}
+
+.oculto{
+    display:none;
+}
+
+.popup-botones{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.popup-botones button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
