@@ -540,19 +540,45 @@ fileInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const storageRef = firebase.storage().ref();
-    const imagenRef = storageRef.child(
-        "imagenes/" + participantes[participanteSeleccionado].nombre + "_" + Date.now()
-    );
+    const reader = new FileReader();
 
-    imagenRef.put(file).then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((url) => {
-            participantes[participanteSeleccionado].imagen = url;
+    reader.onload = function(event) {
+
+        const img = new Image();
+        img.onload = function() {
+
+            const canvas = document.createElement("canvas");
+            const MAX = 100;
+            let w = img.width;
+            let h = img.height;
+
+            if (w > h) {
+                h = Math.round(h * MAX / w);
+                w = MAX;
+            } else {
+                w = Math.round(w * MAX / h);
+                h = MAX;
+            }
+
+            canvas.width = w;
+            canvas.height = h;
+            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+
+            const imgURL = canvas.toDataURL("image/jpeg", 0.5);
+
+            if (participanteSeleccionado !== null) {
+                participantes[participanteSeleccionado].imagen = imgURL;
+            }
+
             renderLista();
             dibujarRuleta();
             guardarParticipantes();
-        });
-    });
+        };
+
+        img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
 });
 
 const importFile =
