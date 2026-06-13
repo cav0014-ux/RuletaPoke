@@ -84,18 +84,15 @@ if (data) {
 
 // 🔵 CASO 2: Firebase
 } else {
-
     db.collection("ruletas")
-      .doc("userId")
+      .doc(userId)
       .get()
       .then((doc) => {
-
           if (doc.exists) {
               inicializar(doc.data().participantes || []);
           } else {
               inicializar(participantesOriginales);
           }
-
       });
 }
 
@@ -679,13 +676,13 @@ function renderHistorial() {
 
 function guardarHistorialFirebase() {
     db.collection("ruletas")
-      .doc("userId")
-      .set({ historial: historial }, {merge : true});
+      .doc(userId)
+      .set({ historial: historial }, { merge: true });
 }
 
 function cargarHistorialFirebase() {
     db.collection("ruletas")
-      .doc("userId")
+      .doc(userId)
       .get()
       .then(doc => {
           if (doc.exists && doc.data().historial) {
