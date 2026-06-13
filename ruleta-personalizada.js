@@ -117,7 +117,6 @@ function dibujarRuleta() {
 
     const angulo = (2 * Math.PI) / total;
 
-    // Precargar todas las imágenes primero
     const promesas = participantes.map(p => {
         if (!p.imagen) return Promise.resolve(null);
         return new Promise(resolve => {
@@ -128,26 +127,28 @@ function dibujarRuleta() {
         });
     });
 
-    Promise.all(promesas).then(imagenes => {
+    const promesaCentro = new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = "Assets/pokeball_centro.png";
+    });
+
+    Promise.all([...promesas, promesaCentro]).then(resultados => {
+        const imagenes = resultados.slice(0, -1);
+        const imgCentro = resultados[resultados.length - 1];
 
         ctx.clearRect(0, 0, 600, 600);
 
         participantes.forEach((participante, i) => {
-
             const inicio = i * angulo;
             const fin = inicio + angulo;
 
-            const imgCentro = new Image();
-            imgCentro.onload = () => {
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(300, 300, 60, 0, Math.PI * 2);
-                ctx.clip();
-                ctx.drawImage(imgCentro, 240, 240, 120, 120);
-                ctx.restore();
-            };
-
-            imgCentro.src = "Assets/pokeball_centro.png";
+            ctx.beginPath();
+            ctx.moveTo(300, 300);
+            ctx.arc(300, 300, 280, inicio, fin);
+            ctx.fillStyle = colores[i % colores.length];
+            ctx.fill();
 
             ctx.save();
             ctx.translate(300, 300);
@@ -158,7 +159,6 @@ function dibujarRuleta() {
             ctx.textAlign = "right";
             ctx.fillText(participante?.nombre ?? "Sin nombre", 240, 10);
 
-            // Dibujar imagen si existe, ya cargada
             if (imagenes[i]) {
                 ctx.drawImage(imagenes[i], 150, -20, 40, 40);
             }
@@ -166,11 +166,17 @@ function dibujarRuleta() {
             ctx.restore();
         });
 
-        // Centro blanco
+        ctx.save();
         ctx.beginPath();
         ctx.arc(300, 300, 60, 0, Math.PI * 2);
-        ctx.fillStyle = "white";
-        ctx.fill();
+        ctx.clip();
+        if (imgCentro) {
+            ctx.drawImage(imgCentro, 240, 240, 120, 120);
+        } else {
+            ctx.fillStyle = "white";
+            ctx.fill();
+        }
+        ctx.restore();
     });
 }
 
