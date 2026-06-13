@@ -259,6 +259,8 @@ document.getElementById("girar").addEventListener("click", () => {
              ((360 - grados + 90) % 360) / gradosPorSector
         ) % participantes.length;
 
+        if(!participantes[indice]) return;
+
         document.getElementById("resultado").textContent =
             "Ganador: " + participantes[indice].nombre;
             mostrarPopupGanador(
