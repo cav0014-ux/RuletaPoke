@@ -3,15 +3,6 @@ const canvas = document.getElementById("ruleta");
 const ctx = canvas.getContext("2d");
 const spinSound = document.getElementById("spinSound");
 const winSound = document.getElementById("winSound");
-
-
-document.getElementById("volumen").addEventListener("input", (e) => {
-    const vol = parseFloat(e.target.value);
-    spinSound.volume = vol;
-    winSound.volume = vol;
-});
-
-
 const params = new URLSearchParams(window.location.search);
 const firebaseConfig = {
   apiKey: "AIzaSyDWxXeQHPmtnX06JKvRdlHIvtWpqldEUIQ",
@@ -706,6 +697,12 @@ document.getElementById("borrarHistorial")
     historial = [];
     guardarHistorialFirebase();
     renderHistorial();
+});
+
+document.getElementById("volumen").addEventListener("input", (e) => {
+    const vol = parseFloat(e.target.value);
+    spinSound.volume = vol;
+    winSound.volume = vol;
 });
 
 cargarHistorialFirebase();
