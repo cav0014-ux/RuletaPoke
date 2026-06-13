@@ -147,7 +147,7 @@ function dibujarRuleta() {
                 ctx.restore();
             };
 
-            imgCentro.src = "Assets/pokeball_centro.png"
+            imgCentro.src = "Assets/pokeball_centro.png";
 
             ctx.save();
             ctx.translate(300, 300);
