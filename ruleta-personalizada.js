@@ -86,7 +86,7 @@ if (data) {
 } else {
 
     db.collection("ruletas")
-      .doc("ruletaPokemon1")
+      .doc("userId")
       .get()
       .then((doc) => {
 
@@ -163,14 +163,22 @@ function dibujarRuleta() {
 ctx.restore();
 
 
-function guardarEnFirebase() {
-  db.collection("ruletas")
-    .doc("ruletaPokemon1")
-    .set({
-      participantes: participantes
-    });
+function getUserId() {
+    let id = localStorage.getItem("ruletaUserId");
+    if (!id) {
+        id = Math.random().toString(36).substring(2, 10);
+        localStorage.setItem("ruletaUserId", id);
+    }
+    return id;
 }
 
+const userId = getUserId();
+
+function guardarEnFirebase() {
+    db.collection("ruletas")
+      .doc(userId)
+      .set({ participantes: participantes });
+}
 
 const btnAgregar = document.getElementById("actualizar");
 const panelAgregar = document.getElementById("panelAgregar");
@@ -671,13 +679,13 @@ function renderHistorial() {
 
 function guardarHistorialFirebase() {
     db.collection("ruletas")
-      .doc("ruletaPokemon1")
+      .doc("userId")
       .set({ historial: historial }, {merge : true});
 }
 
 function cargarHistorialFirebase() {
     db.collection("ruletas")
-      .doc("ruletaPokemon1")
+      .doc("userId")
       .get()
       .then(doc => {
           if (doc.exists && doc.data().historial) {
