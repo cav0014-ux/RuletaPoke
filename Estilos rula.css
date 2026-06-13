@@ -290,3 +290,20 @@ body {
     justify-content: center;
     font-size: 14px;
 }
+
+#controlVolumen {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+#controlVolumen label {
+    color: #fff;
+    font-size: 14px;
+}
+
+#volumen {
+    width: 100%;
+    cursor: pointer;
+}
