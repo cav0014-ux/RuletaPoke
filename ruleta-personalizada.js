@@ -16,6 +16,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+function getUserId() {
+    let id = localStorage.getItem("ruletaUserId");
+    if (!id) {
+        id = Math.random().toString(36).substring(2, 10);
+        localStorage.setItem("ruletaUserId", id);
+    }
+    return id;
+}
+
+const userId = getUserId();
+
 document.addEventListener("click", (e) => {
 
     const btnImagen = e.target.closest(".btnImagen");
@@ -160,16 +171,7 @@ function dibujarRuleta() {
 ctx.restore();
 
 
-function getUserId() {
-    let id = localStorage.getItem("ruletaUserId");
-    if (!id) {
-        id = Math.random().toString(36).substring(2, 10);
-        localStorage.setItem("ruletaUserId", id);
-    }
-    return id;
-}
 
-const userId = getUserId();
 
 function guardarEnFirebase() {
     db.collection("ruletas")
