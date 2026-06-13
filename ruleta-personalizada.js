@@ -664,11 +664,28 @@ function renderHistorial() {
     historial.slice().reverse().forEach(item => {
         const div = document.createElement("div");
         div.className = "historial-item";
+        div.style.cursor = "pointer";
         if (item.imagen) {
             div.innerHTML = `<img src="${item.imagen}"><span>${item.nombre}</span>`;
         } else {
             div.innerHTML = `<div class="sin-imagen">👤</div><span>${item.nombre}</span>`;
         }
+        div.addEventListener("click", () => {
+            const popup = document.getElementById("popupHistorial");
+            const img = document.getElementById("imagenHistorial");
+            const nombre = document.getElementById("nombreHistorial");
+
+            nombre.textContent = item.nombre;
+
+            if (item.imagen) {
+                img.src = item.imagen;
+                img.style.display = "block";
+            } else {
+                img.style.display = "none";
+            }
+
+            popup.classList.remove("oculto");
+        });
         lista.appendChild(div);
     });
 }
@@ -731,6 +748,11 @@ document.getElementById("volumen").addEventListener("input", (e) => {
         document.getElementById("iconoVolumen").textContent = "🔊";
         muteado = false;
     }
+});
+
+document.getElementById("cerrarPopupHistorial")
+.addEventListener("click", () => {
+    document.getElementById("popupHistorial").classList.add("oculto");
 });
 
 cargarHistorialFirebase();
