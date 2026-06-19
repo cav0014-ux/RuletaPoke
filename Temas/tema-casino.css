@@ -1,0 +1,235 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:wght@600;700&display=swap');
+
+body.tema-casino {
+    --accent: #ffd700;
+    --accent2: #2ecc71;
+    --title-shadow: #0b1a10;
+    --bg-main: #0b1a10;
+    --bg-panel: #103d1f;
+    --bg-boton: #1b5e2e;
+    --bg-boton-hover: #27ae60;
+    --texto-boton: #ffd700;
+    --sombra-boton: #06140a;
+    --bg-popup: #0b1a10;
+    --texto-popup: #ffd700;
+    --border-popup: #ffd700;
+    --bg-item: #1b5e2e;
+}
+
+body.tema-casino #panelLateral {
+    position: relative;
+    background-color: #1a5c2a !important;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+    border-left: 4px solid #ffd700 !important;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+body.tema-casino #panelLateral > *:not(#globosCanvas) {
+    position: relative;
+    z-index: 1;
+}
+
+body.tema-casino .btn-rojo {
+    background-color: #8b0000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffd700 !important;
+    border-radius: 50px !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+body.tema-casino .btn-rojo:hover {
+    background-color: #a00000 !important;
+}
+
+body.tema-casino .btn-negro {
+    background-color: #111111 !important;
+    color: #ffd700 !important;
+    border: 2px solid #ffd700 !important;
+    border-radius: 50px !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+body.tema-casino .btn-negro:hover {
+    background-color: #222222 !important;
+}
+
+body.tema-casino {
+    font-family: 'Playfair Display', serif;
+}
+
+body.tema-casino #tituloRuleta {
+    font-family: 'Abril Fatface', serif;
+}
+
+body.tema-casino #nuevoNombre {
+    font-family: 'Playfair Display', serif;
+    background-color: #0b2e13;
+    border: 2px solid #ffd700;
+    border-radius: 4px;
+    color: #ffd700;
+    padding: 8px 16px;
+}
+
+body.tema-casino #nuevoNombre::placeholder {
+    color: #a0845c;
+    font-family: 'Playfair Display', serif;
+}
+
+body.tema-casino #nuevoNombre:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #0b2e13 inset;
+    -webkit-text-fill-color: #ffd700;
+}
+
+body.tema-casino .participante-item {
+    background-color: #0b2e13 !important;
+    border: 2px solid #ffd700 !important;
+    border-radius: 4px !important;
+    color: #ffd700 !important;
+    font-family: 'Playfair Display', serif;
+}
+
+body.tema-casino .btn-rojo,
+body.tema-casino .btn-negro {
+    font-family: 'Playfair Display', serif !important;
+}
+
+body.tema-casino #girar,
+body.tema-casino #toggleHistorial,
+body.tema-casino #borrarHistorial,
+body.tema-casino .historial-item {
+    font-family: 'Playfair Display', serif !important;
+}
+
+body.tema-casino #panelLateral {
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+body.tema-casino #panelLateral > *:not(#globosCanvas) {
+    position: relative;
+    z-index: 1;
+}
+
+body.tema-casino .contenedor,
+body.tema-casino #panelHistorial {
+    position: relative;
+    z-index: 1;
+}
+
+body.tema-casino #panelHistorial {
+    isolation: isolate;
+    z-index: 1;
+}
+
+body.tema-casino #panelHistorial {
+    position: fixed;
+    left: 40px;
+    top: 20px;
+    z-index: 2;
+    background: rgba(11, 29, 16, 0.85);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+body.tema-casino .historial-item:nth-child(odd) {
+    background-color: #8b0000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffd700 !important;
+}
+
+body.tema-casino .historial-item:nth-child(even) {
+    background-color: #111111 !important;
+    color: #ffd700 !important;
+    border: 2px solid #ffd700 !important;
+}
+
+body.tema-casino #borrarHistorial,
+body.tema-casino #toggleHistorial {
+    border-radius: 50px !important;
+}
+
+body.tema-casino .popup-contenido {
+    background: #111111 !important;
+    border: 6px solid #ffd700 !important;
+    border-radius: 12px !important;
+    box-shadow: 
+        0 0 0 3px #8b0000,
+        0 0 0 6px #ffd700,
+        0 0 30px rgba(255, 215, 0, 0.4),
+        8px 8px 0 #000 !important;
+    font-family: 'Abril Fatface', serif !important;
+    color: #ffd700 !important;
+    position: relative;
+    overflow: hidden;
+}
+
+body.tema-casino .popup-contenido::before {
+    content: "🎰 ★ 🎰 ★ 🎰";
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+    color: #ffd700;
+    border-bottom: 2px solid #ffd700;
+    padding-bottom: 10px;
+}
+
+body.tema-casino .popup-contenido::after {
+    content: "🎰 ★ 🎰 ★ 🎰";
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 8px;
+    margin-top: 15px;
+    color: #ffd700;
+    border-top: 2px solid #ffd700;
+    padding-top: 10px;
+}
+
+body.tema-casino .popup-contenido h2,
+body.tema-casino .popup-contenido h3 {
+    color: #ffd700 !important;
+    font-family: 'Abril Fatface', serif !important;
+    text-shadow: 2px 2px 0 #8b0000;
+}
+
+body.tema-casino .popup-botones button {
+    background-color: #8b0000 !important;
+    color: #ffd700 !important;
+    border: 2px solid #ffd700 !important;
+    border-radius: 50px !important;
+    font-family: 'Playfair Display', serif !important;
+}
+
+body.tema-casino .popup-botones button:nth-child(even) {
+    background-color: #111111 !important;
+}
+
+@keyframes olaLetra {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+body.tema-casino #tituloRuleta {
+    display: inline-flex;
+    gap: 2px;
+}
+
+body.tema-casino #tituloRuleta .letra-ola {
+    display: inline-block;
+    animation: olaLetra 1.5s ease-in-out infinite;
+}
+
+body.tema-casino #contenedorTitulo {
+    animation: none;
+}
+
+body.tema-casino .flecha {
+    right: calc(50% - 410px);
+}

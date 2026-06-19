@@ -1,0 +1,15 @@
+body.tema-halloween {
+    --accent: #ff7f11;
+    --accent2: #a347e0;
+    --title-shadow: #4b0082;
+    --bg-main: #0d0014;
+    --bg-panel: #1f0a2e;
+    --bg-boton: #4b0082;
+    --bg-boton-hover: #6a0dad;
+    --texto-boton: #ff7f11;
+    --sombra-boton: #1f0a2e;
+    --bg-popup: #0d0014;
+    --texto-popup: #ff7f11;
+    --border-popup: #ff7f11;
+    --bg-item: #4b0082;
+}

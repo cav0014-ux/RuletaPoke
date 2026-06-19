@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
+
+body.tema-circo {
+    --accent: #ffd700;
+    --accent2: #ff7675;
+    --title-shadow: #c0392b;
+    --bg-main: #2b0a0a;
+    --bg-panel: #4d1414;
+    --bg-boton: #c0392b;
+    --bg-boton-hover: #e74c3c;
+    --texto-boton: #fff;
+    --sombra-boton: #7a1f1f;
+    --bg-popup: #4d1414;
+    --texto-popup: #ffd700;
+    --border-popup: #ffd700;
+    --bg-item: #c0392b;
+
+    font-family: 'Fredoka', Arial, sans-serif;
+    background-image: repeating-linear-gradient(135deg, transparent 0 40px, rgba(255,255,255,0.03) 40px 80px);
+}
+
+body.tema-circo #tituloRuleta {
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-style: italic;
+}
+
+body.tema-circo #panelLateral {
+    border-left: 6px dashed var(--accent);
+}
+
+body.tema-circo #panelLateral::before {
+    content: "";
+    display: block;
+    height: 24px;
+    margin: -20px -20px 20px -20px;
+    background: repeating-linear-gradient(45deg, var(--bg-item) 0 20px, var(--accent) 20px 40px);
+}
+
+body.tema-circo #panelLateral button,
+body.tema-circo .popup-botones button,
+body.tema-circo #girar,
+body.tema-circo #toggleHistorial,
+body.tema-circo #borrarHistorial,
+body.tema-circo #btnTemas {
+    border-radius: 50px;
+    border-style: dashed;
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+
+body.tema-circo .participante-item,
+body.tema-circo .historial-item {
+    border-radius: 50px;
+    border-style: dashed;
+}
+
+body.tema-circo .popup-contenido {
+    border-radius: 40px;
+    border-width: 6px;
+    border-style: dashed;
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+
+/* CORTINAS */
+body.tema-circo .contenedor::before,
+body.tema-circo .contenedor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body.tema-circo .contenedor::before {
+    left: 0;
+    background: repeating-linear-gradient(180deg, #c0392b 0px, #c0392b 40px, #fff 40px, #fff 80px);
+    clip-path: polygon(0 0, 100% 0, 85% 8%, 100% 16%, 85% 24%, 100% 32%, 85% 40%, 100% 48%, 85% 56%, 100% 64%, 85% 72%, 100% 80%, 85% 88%, 100% 96%, 85% 100%, 0 100%);
+    animation: ondearIzq 3s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+body.tema-circo .contenedor::after {
+    right: 0;
+    background: repeating-linear-gradient(180deg, #c0392b 0px, #c0392b 40px, #fff 40px, #fff 80px);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 96%, 15% 88%, 0 80%, 15% 72%, 0 64%, 15% 56%, 0 48%, 15% 40%, 0 32%, 15% 24%, 0 16%, 15% 8%);
+    animation: ondearDer 3s ease-in-out infinite;
+    transform-origin: right center;
+}
+
+@keyframes ondearIzq {
+    0%, 100% { transform: skewY(0deg) scaleX(1); }
+    50% { transform: skewY(1deg) scaleX(1.04); }
+}
+
+@keyframes ondearDer {
+    0%, 100% { transform: skewY(0deg) scaleX(1); }
+    50% { transform: skewY(-1deg) scaleX(1.04); }
+}
+
+/* PANEL GLOBOS */
+body.tema-circo #globosCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.tema-circo #panelLateral {
+    position: relative;
+    background-color: #e85555;
+    background-image: none;
+    animation: none;
+}
+
+body.tema-circo #panelLateral > *:not(#globosCanvas) {
+    position: relative;
+    z-index: 1;
+}
+
+body.tema-circo #panelLateral .btnImagen {
+    background: #c0392b !important;
+    border-color: #ffd700 !important;
+}
+
+body.tema-circo #nuevoNombre {
+    font-family: 'Fredoka', Arial, sans-serif;
+    font-size: 1rem;
+    background-color: #fff0f0;
+    border: 3px dashed #c0392b;
+    border-radius: 50px;
+    color: #c0392b;
+    padding: 8px 16px;
+}
+
+body.tema-circo #nuevoNombre::placeholder {
+    color: #e07070;
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+
+body.tema-circo #nuevoNombre:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff0f0 inset;
+    -webkit-text-fill-color: #c0392b;
+}
+
+body.tema-circo #nuevoNombre:-webkit-autofill {
+    -webkit-text-fill-color: #c0392b;
+    font-family: 'Fredoka', Arial, sans-serif;
+}
+
+
+body.tema-circo #tituloRuleta {
+    text-shadow: none;
+}
+
+body.tema-circo #panelLateral .btnImagen {
+    background: #c0392b !important;
+    border-color: #ffd700 !important;
+}
+
+body.tema-circo #panelLateral .btnImagen:hover,
+body.tema-circo #panelLateral .btnImagen:active {
+    background: #c0392b !important;
+}
+

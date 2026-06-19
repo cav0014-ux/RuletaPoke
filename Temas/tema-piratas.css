@@ -1,0 +1,15 @@
+body.tema-piratas {
+    --accent: #d4af37;
+    --accent2: #b07d4f;
+    --title-shadow: #16334d;
+    --bg-main: #0b1d2e;
+    --bg-panel: #16334d;
+    --bg-boton: #5a3825;
+    --bg-boton-hover: #7a4f33;
+    --texto-boton: #f4e4c1;
+    --sombra-boton: #2e1c12;
+    --bg-popup: #0b1d2e;
+    --texto-popup: #d4af37;
+    --border-popup: #d4af37;
+    --bg-item: #5a3825;
+}
